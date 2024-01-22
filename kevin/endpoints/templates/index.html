@@ -1,0 +1,53 @@
+<body>
+<div id="msgBox"></div>
+<input id="chatBox" type="text">
+</body>
+
+<script>
+  let msgBox = document.getElementById('msgBox')
+  let chatBox = document.getElementById('chatBox')
+
+  function press(e) {
+    if (e.code !== 'Enter') return
+    let message = chatBox.value
+    chatBox.value = ''
+    send(message)
+  }
+
+  function say(who, message, type) {
+    if (!message) return
+    console.log(`${who}: ${message}`)
+    let text = document.createElement('code')
+    let node = document.createTextNode(`${who}: ${message}`)
+    if (type === "image") {
+      node = document.createElement("img")
+      node.src = message
+    }
+    text.appendChild(node)
+    msgBox.appendChild(text)
+    msgBox.appendChild(document.createElement('br'))
+  }
+
+  function send(message) {
+    say("You", message)
+
+    let xhr = new XMLHttpRequest()
+    xhr.onreadystatechange = function () {
+      if (this.readyState !== 4) return
+      if (this.status === 200) {
+        let data = JSON.parse(this.responseText)
+        say("Kevin", data.message, data.type)
+      } else {
+        say("Kevin", `sadly, ${this.status}`, "error")
+      }
+    }
+    xhr.open('POST', '/endpoints/webhook/api/', true)
+    xhr.setRequestHeader('Content-Type', 'application/json')
+    xhr.send(JSON.stringify({
+      text: message,
+      username: 'you',
+    }))
+  }
+
+  chatBox.onkeypress = press
+</script>

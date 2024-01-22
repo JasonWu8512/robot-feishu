@@ -1,0 +1,44 @@
+[[source]]
+url = "https://mirrors.aliyun.com/pypi/simple/"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+celery = "==4.4.7"
+django = "==3.1.2"
+hutils = "==1.0.14"
+requests = "==2.24.0"
+cryptography = "==3.2.1"
+redis = "==3.5.3"
+fabric3 = "==1.14.post1"
+gunicorn = "==20.0.4"
+django-celery-beat = "==2.2.0"
+flower = "==0.9.7"
+jira = "==2.0.0"
+djangorestframework = "==3.12.2"
+mysqlclient = "==2.0.3"
+retry = "*"
+collection = "*"
+ipython = "*"
+pypinyin = "*"
+dateparser = "*"
+funcy = "*"
+python-gitlab = "*"
+gitpython = "*"
+arrow = "*"
+pandas = "*"
+django-simpleui = "*"
+django-mysql-geventpool = "*"
+openpyxl = "*"
+xlrd = "*"
+
+[dev-packages]
+autoflake = "==1.4"
+black = "==20.8b1"
+isort = "==5.6.4"
+pook = "==1.0.1"
+pytest-cov = "==2.10.1"
+pytest-django = "==4.1.0"
+
+[requires]
+python_version = "3.8"

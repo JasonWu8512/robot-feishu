@@ -1,0 +1,10 @@
+version: "3"
+
+services:
+  web:
+    container_name: web
+    restart: always
+    image: zaihuidev/kevin:code
+    ports:
+      - 8000:8000
+    command: python manage.py runserver
